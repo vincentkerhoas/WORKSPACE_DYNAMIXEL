@@ -1,0 +1,89 @@
+#include "main.h"
+
+// openocd -s /local/sdk_elec/openocd/share/openocd/scripts -f board/st_nucleo_f4.cfg -c init
+
+extern TIM_HandleTypeDef    TimHandle_period;
+
+//=====================================================================================
+//  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>    MAIN    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//=====================================================================================
+
+int main(void)
+{
+    HAL_Init(); // passage par stm32f4xx_hal_msp.c : configuration des broches
+    SystemClock_Config();
+
+    uart2_Init();           // CABLE
+    uart6_Init();           // DYNAMIXELS
+    //tickTimer_Init(3000);   // 3000 ms
+    //i2c1_Init();          // Modifier stm32f4xx_hal_msp.c pour configurer les broches
+    //spi1Init();           // Modifier stm32f4xx_hal_msp.c pour configurer les broches
+    HAL_Delay(500);
+
+    //------------------------------------------------------------
+    //  TEST LIAISON SERIE
+    // ouvrir gtkterm ou minicom / /dev/ttyCAM0 baudrate : 115200-8-N-1
+    //------------------------------------------------------------
+    term_printf("hello world \n\r");
+
+    dyn_LED(1, LED_ON);
+
+    dyn_readPacket();
+
+    HAL_Delay(500);
+    dyn_LED(1, LED_OFF);
+    HAL_Delay(500);
+    dyn_LED(1, LED_ON );
+    HAL_Delay(500);
+    dyn_LED(1, LED_OFF);
+    HAL_Delay(500);
+
+    dyn_setOperatingMode(1, VELOCITY_MODE);
+
+    dyn_torque(1, TORQUE_ON);
+
+    dyn_setGoalVelocity(1, 140);
+    HAL_Delay(5000);
+
+    dyn_torque(1, TORQUE_OFF);
+
+    //------------------------------------------------------------
+    //  BLINK LED : PA5
+    //------------------------------------------------------------
+    while(1)
+    {
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 1);
+        HAL_Delay(1000); // 1000 ms
+
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 0);
+        HAL_Delay(1000); // 1000 ms
+    }
+    return 0;
+}
+
+//=====================================================================================
+//      GPIO EXTERNAL INTERRUPT CALLBACK
+//=====================================================================================
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+    switch(GPIO_Pin)
+    {
+    case GPIO_PIN_0 :
+                    break;
+    case GPIO_PIN_13 :  term_printf("USER BUTTON PUSHED \n\r"); // USER BUTTON
+                    break;
+    default :       break;
+
+    }
+}
+//=====================================================================================
+//      TIMER INTERRUPT CALLBACK
+//=====================================================================================
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if (htim==&TimHandle_period)
+    {
+        term_printf("Tick Timer period elapsed \n\r");
+    }
+}
+//=====================================================================================

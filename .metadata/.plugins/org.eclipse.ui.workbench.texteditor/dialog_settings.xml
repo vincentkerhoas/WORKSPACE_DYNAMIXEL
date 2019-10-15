@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="frame_to_write" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="frame_write"/>
+			<item value="DXL_HIBYTE"/>
+			<item value="DXL_LOBYTE"/>
+			<item value="DXL_HIGH_BYTE"/>
+			<item value="DXL_3_BYTE"/>
+			<item value="DXL_2_BYTE"/>
+			<item value="DXL_LOW_BYTE"/>
+			<item value="DXL_BYTE_1"/>
+		</list>
+		<list key="replacehistory">
+			<item value="frame_to_write"/>
+			<item value="DXL_BYTE_2"/>
+			<item value="DXL_BYTE_1"/>
+			<item value="DXL_BYTE_4"/>
+			<item value="DXL_BYTE_3"/>
+			<item value=""/>
+			<item value="dxl"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="263" key="DIALOG_WIDTH"/>
+		<item value="1|Noto Sans|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		<item value="415" key="DIALOG_HEIGHT"/>
+		<item value="556" key="DIALOG_X_ORIGIN"/>
+		<item value="97" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

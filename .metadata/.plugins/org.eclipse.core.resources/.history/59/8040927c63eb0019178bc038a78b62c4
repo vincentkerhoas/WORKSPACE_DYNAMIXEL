@@ -1,0 +1,17 @@
+/*
+ * dynamixel.h
+ *
+ *  Created on: Oct 10, 2019
+ *      Author: kerhoas
+ */
+
+#include "main.h"
+
+#ifndef INC_DYNAMIXEL_H_
+#define INC_DYNAMIXEL_H_
+
+void dyn_LED(int id, char led_color );
+
+
+
+#endif /* INC_DYNAMIXEL_H_ */

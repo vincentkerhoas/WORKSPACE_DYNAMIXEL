@@ -1,0 +1,24 @@
+/*
+ * dynamixel.h
+ *
+ *  Created on: Oct 10, 2019
+ *      Author: kerhoas
+ */
+
+#include "main.h"
+
+#ifndef INC_DYNAMIXEL_H_
+#define INC_DYNAMIXEL_H_
+
+
+#define LED_ON 	1
+#define LED_OFF	0
+
+
+void dyn_LED(int id, char val );
+unsigned short dyn_updateCRC(unsigned short crc_accum, unsigned char *data_blk_ptr, unsigned short data_blk_size);
+int dyn_sendPacketWrite(int id, int Address, int value);
+
+
+
+#endif /* INC_DYNAMIXEL_H_ */
